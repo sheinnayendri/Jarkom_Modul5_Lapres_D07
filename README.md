@@ -281,7 +281,7 @@ Edit pointer **A** menjadi ke IP yang belum digunakan yaitu **192.168.6.1** sert
 
 Setelah itu melakukan restart service bind9 dengan perintah ```service bind9 restart```.
 
-Untuk mengecek, misalkan pada klien **SIDOARJO** dijalankan ```nc jarkomd07.com 80``` kemudian enter dan ketik apapun misalkan ```tes```. Kemudian pada **MADIUN** dan **PROBOLINGGO** akan dicoba lihat apakah diterima dan di mana diterimanya dengan perintah ```tail /var/log/apache2/access.lo```. Kemudian lakukan lagi, dan sekarang harusnya diterima di UML yang lainnya (bergantian), berarti berhasil.
+Untuk mengecek, misalkan pada klien **SIDOARJO** dijalankan ```nc jarkomd07.com 80``` kemudian enter dan ketik apapun misalkan ```tes```. Kemudian pada **MADIUN** dan **PROBOLINGGO** akan dicoba lihat apakah diterima dan di mana diterimanya dengan perintah ```tail /var/log/apache2/access.log```. Kemudian lakukan lagi, dan sekarang harusnya diterima di UML yang lainnya (bergantian), berarti berhasil.
 
 ## 7. Logging semua paket yang di-DROP
 Untuk soal ini konfigurasi akan digabung bersama perintah iptables DROP yaitu untuk **nomor 2 dan 3** di atas.
