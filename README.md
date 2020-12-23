@@ -287,6 +287,7 @@ Untuk mengecek, misalkan pada klien **SIDOARJO** dijalankan ```nc jarkomd07.com 
 Untuk soal ini konfigurasi akan digabung bersama perintah iptables DROP yaitu untuk **nomor 2 dan 3** di atas.
 
 Karena sistem UML semua iptables akan hilang tiap direstart, sebaiknya disimpan dalam file bash script misalkan **iptables.sh** pada tiap UML yang disetting sebagai berikut:
+
 **SURABAYA**
 ```
 iptables -t nat -A POSTROUTING -s 192.168.0.0/16 -o eth0 -j SNAT --to-source 10.151.78.34
