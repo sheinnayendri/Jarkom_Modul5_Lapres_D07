@@ -37,6 +37,10 @@ xterm -T SIDOARJO -e linux ubd0=SIDOARJO,jarkom umid=SIDOARJO eth0=daemon,,,swit
 
 ## B. Subnetting CIDR
 
+![S__19079595](https://user-images.githubusercontent.com/48936125/102977968-5580ff80-4536-11eb-9831-5eaef1afb080.jpg)
+
+![S__19079597](https://user-images.githubusercontent.com/48936125/102977965-531ea580-4536-11eb-9e0c-d43497388cc4.jpg)
+
 Dilakukan subnetting seperti pada gambar di atas, di mana untuk subnet Malang-Mojokerto-Batu tidak perlu diikutkan dalam pembagian IP karena mereka langsung mendapatkan **IP DMZ: 10.151.79.64/29**.
 
 Untuk router yaitu **SURABAYA**, **BATU**, dan **KEDIRI** harus di-uncomment pada perintah ```net.ipv4.ip_forward=1``` agar dapat meneruskan route nantinya. Hal ini dilakukan dengan cara mengetikkan ```nano /etc/sysctl.conf``` kemudian edit di situ, dan untuk mengaktifkan perubahan baru, mengetikkan ```sysctl -p```.
