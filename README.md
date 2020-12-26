@@ -257,7 +257,7 @@ iptables -A INPUT -s 192.168.0.0/24 -j REJECT
 iptables -A INPUT -s 192.168.4.0/24 -j REJECT
 ```
 
-## 6. Ketike mengakses DNS Server akan secara bergantian didistribusikan ke PROBOLINGGO dan MADIUN pada port 80 (setting iptables di SURABAYA)
+## 6. Ketika mengakses DNS Server akan secara bergantian didistribusikan ke PROBOLINGGO dan MADIUN pada port 80 (setting iptables di SURABAYA)
 Ditambahkan perintah iptables sebagai berikut di **SURABAYA**:
 ```
 iptables -A PREROUTING -t nat -p tcp -d 192.168.6.1 --dport 80 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.168.1.2
