@@ -247,14 +247,20 @@ Diberikan beberapa syntax tambahan berupa logging untuk memenuhi soal no.7 yaitu
 
 ## 4-5. SIDOARJO dan GRESIK diberikan waktu akses untuk mengakses server MALANG:
 **SIDOARJO = 07:00 - 17:00 (Senin - Jumat)**
+
 **GRESIK = 17:00 - 07:00 (Setiap Hari)**
 Ditambahkan perintah iptables sebagai berikut di **MALANG**:
 ```
 iptables -A INPUT -s 192.168.4.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
 iptables -A INPUT -s 192.168.0.0/24 -m time --timestart 17:00 --timestop 23:59 -j ACCEPT
 iptables -A INPUT -s 192.168.0.0/24 -m time --timestart 00:00 --timestop 07:00 -j ACCEPT
-iptables -A INPUT -s 192.168.0.0/24 -j REJECT
-iptables -A INPUT -s 192.168.4.0/24 -j REJECT
+#iptables -A INPUT -s 192.168.0.0/24 -j REJECT
+#iptables -A INPUT -s 192.168.4.0/24 -j REJECT
+iptables -N LOGGING
+iptables -A INPUT -s 192.168.0.0/24 -j LOGGING
+iptables -A INPUT -s 192.168.4.0/24 -j LOGGING
+iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
+iptables -A LOGGING -j REJECT
 ```
 
 ## 6. Ketika mengakses DNS Server akan secara bergantian didistribusikan ke PROBOLINGGO dan MADIUN pada port 80 (setting iptables di SURABAYA)
@@ -314,8 +320,13 @@ iptables -A LOGGING -j DROP
 iptables -A INPUT -s 192.168.4.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
 iptables -A INPUT -s 192.168.0.0/24 -m time --timestart 17:00 --timestop 23:59 -j ACCEPT
 iptables -A INPUT -s 192.168.0.0/24 -m time --timestart 00:00 --timestop 07:00 -j ACCEPT
-iptables -A INPUT -s 192.168.0.0/24 -j REJECT
-iptables -A INPUT -s 192.168.4.0/24 -j REJECT
+#iptables -A INPUT -s 192.168.0.0/24 -j REJECT
+#iptables -A INPUT -s 192.168.4.0/24 -j REJECT
+iptables -N LOGGING
+iptables -A INPUT -s 192.168.0.0/24 -j LOGGING
+iptables -A INPUT -s 192.168.4.0/24 -j LOGGING
+iptables -A LOGGING -m limit --limit 5/min -j LOG --log-prefix "iptables_FORWARD_denied: " --log-level 7
+iptables -A LOGGING -j REJECT
 ```
 
 **MOJOKERTO**
