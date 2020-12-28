@@ -225,6 +225,23 @@ Ditambahkan perintah iptables sebagai berikut di **SURABAYA**:
 iptables -t nat -A POSTROUTING -s 192.168.0.0/16 -o eth0 -j SNAT --to-source 10.151.78.34
 ```
 
+Selain itu, agar klien **GRESIK** dan **SIDOARJO** dapat mengakses ke luar, maka perlu ditambahkan forwarding pada DNS Server yaitu **MALANG** pada file ```/etc/bind/named.conf.options```, uncomment pada bagian (0.0.0.0 diubah menjadi 8.8.8.8):
+```
+forwarders {
+    8.8.8.8;
+};
+```
+
+Comment pada bagian ini
+```
+// dnssec-validation auto;
+```
+
+Dan tambahkan
+```
+allow-query{any;};
+```
+
 ## 2. Akses SSH di luar topologi (UML) akan di-DROP ketika mengakses server yang memiliki IP DMZ (lakukan setting di SURABAYA)
 Ditambahkan perintah iptables sebagai berikut di **SURABAYA**:
 ```
